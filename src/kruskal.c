@@ -15,7 +15,7 @@ typedef struct Edge {
     int weight;
 } Edge;
 
-Graph* createGraph(int numVertices) {
+Graph* createGraphKruskal(int numVertices) {
     Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->numVertices = numVertices;
 
@@ -29,7 +29,7 @@ Graph* createGraph(int numVertices) {
     return graph;
 }
 
-void addEdge(Graph* graph, int src, int dest, int weight) {
+void addEdgeKruskal(Graph* graph, int src, int dest, int weight) {
     if (src >= 0 && src < graph->numVertices && dest >= 0 && dest < graph->numVertices) {
         graph->weights[src][dest] = weight;
         graph->weights[dest][src] = weight; // Assume-se que o grafo é não-direcionado
@@ -38,7 +38,7 @@ void addEdge(Graph* graph, int src, int dest, int weight) {
     }
 }
 
-void displayGraph(Graph* graph) {
+void displayGraphKruskal(Graph* graph) {
     printf("Dados armazenados no grafo:\n");
     for (int i = 0; i < graph->numVertices; i++) {
         for (int j = 0; j < graph->numVertices; j++) {
@@ -63,7 +63,7 @@ void unionSet(int parent[], int x, int y) {
     parent[xroot] = yroot;
 }
 
-void generateMST(Graph* graph) {
+void generateMSTKruskal(Graph* graph) {
     int parent[MAX_VERTICES];
     for (int i = 0; i < graph->numVertices; i++) {
         parent[i] = i;
@@ -102,25 +102,25 @@ void generateMST(Graph* graph) {
     }
 }
 
-int main() {
+int KruskalMain() {
     int numVertices;
     printf("Digite o número de vértices (até %d): ", MAX_VERTICES);
     scanf("%d", &numVertices);
 
     if (numVertices > 0 && numVertices <= MAX_VERTICES) {
-        Graph* graph = createGraph(numVertices);
+        Graph* graph = createGraphKruskal(numVertices);
 
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 int weight;
                 printf("Digite o peso da aresta entre os vértices %d e %d: ", i, j);
                 scanf("%d", &weight);
-                addEdge(graph, i, j, weight);
+                addEdgeKruskal(graph, i, j, weight);
             }
         }
 
-        displayGraph(graph);
-        generateMST(graph);
+        displayGraphKruskal(graph);
+        generateMSTKruskal(graph);
     } else {
         printf("Número inválido de vértices!\n");
     }

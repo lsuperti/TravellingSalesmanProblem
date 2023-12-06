@@ -10,7 +10,7 @@ typedef struct Graph {
     int weights[MAX_VERTICES][MAX_VERTICES];
 } Graph;
 
-Graph* createGraph(int numVertices) {
+Graph* createGraphPrim(int numVertices) {
     Graph* graph = (Graph*)malloc(sizeof(Graph));
     graph->numVertices = numVertices;
 
@@ -24,7 +24,7 @@ Graph* createGraph(int numVertices) {
     return graph;
 }
 
-void addEdge(Graph* graph, int src, int dest, int weight) {
+void addEdgePrim(Graph* graph, int src, int dest, int weight) {
     if (src >= 0 && src < graph->numVertices && dest >= 0 && dest < graph->numVertices) {
         graph->weights[src][dest] = weight;
         graph->weights[dest][src] = weight; // Assume-se que o grafo é não-direcionado
@@ -33,7 +33,7 @@ void addEdge(Graph* graph, int src, int dest, int weight) {
     }
 }
 
-void displayGraph(Graph* graph) {
+void displayGraphPrim(Graph* graph) {
     printf("Dados armazenados no grafo:\n");
     for (int i = 0; i < graph->numVertices; i++) {
         for (int j = 0; j < graph->numVertices; j++) {
@@ -54,7 +54,7 @@ int findMinKey(int key[], bool mstSet[], int numVertices) {
     return minIndex;
 }
 
-void generateMST(Graph* graph) {
+void generateMSTPrim(Graph* graph) {
     int parent[MAX_VERTICES];
     int key[MAX_VERTICES];
     bool mstSet[MAX_VERTICES];
@@ -88,25 +88,25 @@ void generateMST(Graph* graph) {
     }
 }
 
-int main() {
+int PrimMain() {
     int numVertices;
     printf("Digite o número de vértices (até %d): ", MAX_VERTICES);
     scanf("%d", &numVertices);
 
     if (numVertices > 0 && numVertices <= MAX_VERTICES) {
-        Graph* graph = createGraph(numVertices);
+        Graph* graph = createGraphPrim(numVertices);
 
         for (int i = 0; i < numVertices; i++) {
             for (int j = 0; j < numVertices; j++) {
                 int weight;
                 printf("Digite o peso da aresta entre os vértices %d e %d: ", i, j);
                 scanf("%d", &weight);
-                addEdge(graph, i, j, weight);
+                addEdgePrim(graph, i, j, weight);
             }
         }
 
-        displayGraph(graph);
-        generateMST(graph);
+        displayGraphPrim(graph);
+        generateMSTPrim(graph);
     } else {
         printf("Número inválido de vértices!\n");
     }
