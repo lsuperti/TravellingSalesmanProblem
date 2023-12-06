@@ -76,6 +76,9 @@ $(OUTPUT):
 $(MAIN): $(OBJECTS) 
 	$(CC) $(CFLAGS) $(INCLUDES) -o $(OUTPUTMAIN) $(OBJECTS) $(LFLAGS) $(LIBS)
 
+final: $(OBJECTS)
+	$(CC) -O3 -g -Wall -Wextra $(INCLUDES) -o $(OUTPUTMAIN) $(OBJECTS) $(LFLAGS) $(LIBS)
+
 # include all .d files
 -include $(DEPS)
 
