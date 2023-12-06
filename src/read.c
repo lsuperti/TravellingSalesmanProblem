@@ -77,12 +77,21 @@ void calculateMST(int graph[SIZE][SIZE]) {
 }
 
 // Função para percorrer a MST e formar um caminho aproximado (DFS)
+int calculateCost(int parent[], int adjacencyMatrix[SIZE][SIZE]) {
+    int cost = 0;
+    for (int i = 1; i < SIZE; i++) {
+        cost += adjacencyMatrix[i][parent[i]];
+    }
+    return cost;
+}
+
 void DFS(int v, int parent[], bool visited[], int adjacencyMatrix[SIZE][SIZE]) {
     visited[v] = true;
 
     for (int i = 0; i < SIZE; i++) {
         if (adjacencyMatrix[v][i] && !visited[i]) {
             printf("%d -> %d\n", v, i); // Aqui você pode fazer algo com o nó visitado, como adicionar ao caminho
+            parent[i] = v;
             DFS(i, parent, visited, adjacencyMatrix);
         }
     }
@@ -113,7 +122,9 @@ int main() {
     printf("\nCaminho Aproximado (DFS na MST):\n");
     // Chama a DFS a partir do nó inicial (por exemplo, o nó 0)
     DFS(0, parent, visited, adjacencyMatrix);
-
+    
+    int cost = calculateCost(parent, adjacencyMatrix);
+    printf("\nCusto total do caminho aproximado: %d\n", cost);
 
     return 0;
 }
