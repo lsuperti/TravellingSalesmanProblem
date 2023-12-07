@@ -48,6 +48,9 @@ int main( int argc, char * argv[] ) {
             if ( bruteForceTest ) {
                 BruteForce( matrix, size, &bestPath );
             } else {
+                DestroyMatrix( matrix, size );
+                matrix = ReadMatrixFile( paths[ test - 1 ], &size );
+                
                 Approximate( matrix, size );
             }
         }
