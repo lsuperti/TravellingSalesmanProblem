@@ -1,0 +1,1 @@
+int Approximate( int ** matrix, int size );

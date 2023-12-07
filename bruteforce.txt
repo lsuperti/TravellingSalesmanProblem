@@ -1,0 +1,3 @@
+tsp1_253.txt: 1 s, 674 ticks; result: 253.
+tsp2_1248.txt: 0 s, 1 ticks; result: 1248.
+tsp3_1194.txt: 24571 s, 24571259 ticks; result: 1194.
