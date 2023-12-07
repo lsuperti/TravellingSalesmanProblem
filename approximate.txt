@@ -1,0 +1,5 @@
+tsp1_253.txt: 0 s, 0 ticks; result: 352.
+tsp2_1248.txt: 0 s, 0 ticks; result: 1048.
+tsp3_1194.txt: 0 s, 0 ticks; result: 1036.
+tsp4_7013.txt: 0 s, 0 ticks; result: 24502.
+tsp5_27603.txt: 0 s, 0 ticks; result: 46257.
